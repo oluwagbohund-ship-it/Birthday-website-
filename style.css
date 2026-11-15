@@ -892,19 +892,45 @@ img[data-view-image] {
   margin: 12px auto 4px;
 }
 
+.video-download {
+  display: flex;
+  width: max-content;
+  min-height: 42px;
+  margin: 18px auto 0;
+  padding: 10px 17px;
+  border-color: var(--gold);
+  background: linear-gradient(110deg, #f3d993, var(--gold));
+  color: #17213a;
+}
+
+.video-download:hover {
+  border-color: #fff0c8;
+  background: #fff0c8;
+  color: #101531;
+}
+
 .video-message h2 {
   margin-bottom: 22px;
   font-size: clamp(34px, 4vw, 47px);
 }
 
 .video-dedication {
-  margin: 25px 0 0;
-  padding-top: 15px;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
-  font: 700 10px/1.7 var(--sans);
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
+  margin-top: 30px;
+  padding: 19px 21px 5px;
+  border: 1px solid rgb(189 121 236 / 28%);
+  border-left: 3px solid var(--berry);
+  background: linear-gradient(120deg, rgb(189 121 236 / 12%), rgb(255 117 135 / 5%));
+}
+
+.video-dedication .eyebrow {
+  margin-bottom: 7px;
+  color: #dfb4ff;
+}
+
+.video-dedication p:last-child {
+  margin-bottom: 10px;
+  color: #e0d9e8;
+  font: 14px/1.85 var(--sans);
 }
 
 .video-dedication strong {
