@@ -552,10 +552,13 @@ h2 em {
   background: #050d1b;
 }
 
-.video-frame-inner img {
+.video-frame-inner video {
+  display: block;
   width: 100%;
-  aspect-ratio: 1.42;
-  object-fit: cover;
+  max-height: 620px;
+  aspect-ratio: 16 / 9;
+  background: #030914;
+  object-fit: contain;
 }
 
 .frame-caption {

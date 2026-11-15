@@ -19,9 +19,11 @@ images/
   1000128212.jpg
   1000131288.jpg
   1000131291.jpg
+videos/
+  student-appreciation.mp4
 ```
 
-All six available photographs are preserved in `images/` and displayed in the gallery. The repository and supplied ZIP archive did not contain an appreciation video. No placeholder or fabricated video has been added. When the original MP4 is available, add it as `videos/student-appreciation.mp4` and update `video.html` to use the native HTML `<video controls playsinline>` element.
+All six available photographs are preserved in `images/` and displayed in the gallery. The original appreciation video is extracted to `videos/student-appreciation.mp4` and plays on `video.html` in the browser's native video player.
 
 ## Preview locally
 
