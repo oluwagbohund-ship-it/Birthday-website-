@@ -7,6 +7,7 @@
   <meta name="description" content="A colorful birthday celebration, heartfelt thank-you and collection of memories for the wonderful students of Rightec School.">
   <title>A Birthday to Remember | Dave Timi</title>
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
   <header class="site-header">
@@ -14,7 +15,10 @@
       <span class="brand-mark" aria-hidden="true">DT</span>
       <span class="brand-copy"><strong>DAVE TIMI</strong><small>BIRTHDAY MEMORIES</small></span>
     </a>
-    <nav class="navigation" aria-label="Main navigation">
+    <button class="menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation menu">
+      <span class="menu-icon" aria-hidden="true"></span><span>Menu</span>
+    </button>
+    <nav class="navigation" id="site-navigation" aria-label="Main navigation">
       <a href="index.html" aria-current="page">Home</a>
       <a href="memories.html">Our Memories</a>
       <a href="speech.html">My Speech</a>
@@ -33,10 +37,12 @@
         <div class="button-row">
           <a class="button button-gold" href="memories.html">Visit our memories <span aria-hidden="true">→</span></a>
           <a class="button button-outline" href="speech.html">Read my message</a>
+          <button class="button button-confetti" type="button" data-celebrate>Send a little confetti <span aria-hidden="true">✦</span></button>
         </div>
+        <p class="visually-hidden" data-celebrate-status aria-live="polite"></p>
       </div>
       <figure class="hero-photo">
-        <img src="images/1000128212.jpg" alt="Mr. David surrounded by his students at Rightec School">
+        <img src="images/1000128212.jpg" alt="Mr. David surrounded by his students at Rightec School" data-view-image>
         <figcaption><span>Rightec School<br>A day to remember</span><a class="download-link" href="images/1000128212.jpg" download="1000128212.jpg">Download photo</a></figcaption>
       </figure>
       <div class="party-props" aria-hidden="true"><span class="balloon balloon-coral"></span><span class="balloon balloon-teal"></span><span class="balloon balloon-violet"></span></div>
@@ -63,17 +69,17 @@
       </div>
       <div class="preview-grid">
         <article class="preview-card">
-          <img src="images/1000127502.jpg" alt="A joyful birthday gathering with the students" loading="lazy">
+          <img src="images/1000127502.jpg" alt="A joyful birthday gathering with the students" loading="lazy" data-view-image>
           <span>One very happy birthday</span>
           <a class="download-link" href="images/1000127502.jpg" download="1000127502.jpg">Download photo</a>
         </article>
         <article class="preview-card preview-card-offset">
-          <img src="images/1000131288.jpg" alt="Mr. David sharing a gift with his students" loading="lazy">
+          <img src="images/1000131288.jpg" alt="Mr. David sharing a gift with his students" loading="lazy" data-view-image>
           <span>Made special by you</span>
           <a class="download-link" href="images/1000131288.jpg" download="1000131288.jpg">Download photo</a>
         </article>
         <article class="preview-card">
-          <img src="images/1000131291.jpg" alt="Students gathered around a birthday card" loading="lazy">
+          <img src="images/1000131291.jpg" alt="Students gathered around a birthday card" loading="lazy" data-view-image>
           <span>A card full of kindness</span>
           <a class="download-link" href="images/1000131291.jpg" download="1000131291.jpg">Download photo</a>
         </article>
@@ -98,5 +104,98 @@
     <p>Made with gratitude for the wonderful students of Rightec School.</p>
     <p class="creator-credit">Created by David Timileyin Oluwagbohun</p>
   </footer>
+  <script>
+    (() => {
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navigation = document.querySelector(".navigation");
+      const closeMenu = () => {
+        menuToggle.setAttribute("aria-expanded", "false");
+        navigation.classList.remove("is-open");
+      };
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute("aria-expanded", String(!isOpen));
+        navigation.classList.toggle("is-open", !isOpen);
+      });
+      navigation.addEventListener("click", (event) => {
+        if (event.target instanceof HTMLAnchorElement) closeMenu();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeMenu();
+      });
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 600) closeMenu();
+      });
+
+      const photoDialog = document.createElement("dialog");
+      photoDialog.className = "photo-dialog";
+      photoDialog.setAttribute("aria-label", "Full-size memory photograph");
+      const closeButton = document.createElement("button");
+      closeButton.className = "photo-dialog-close";
+      closeButton.type = "button";
+      closeButton.textContent = "Close";
+      closeButton.setAttribute("aria-label", "Close full-size photo");
+      const fullSizeImage = document.createElement("img");
+      fullSizeImage.className = "photo-dialog-image";
+      const caption = document.createElement("p");
+      caption.className = "photo-dialog-caption";
+      const downloadLink = document.createElement("a");
+      downloadLink.className = "download-link";
+      downloadLink.textContent = "Download photo";
+      photoDialog.append(closeButton, fullSizeImage, caption, downloadLink);
+      document.body.append(photoDialog);
+
+      closeButton.addEventListener("click", () => photoDialog.close());
+      photoDialog.addEventListener("click", (event) => {
+        if (event.target === photoDialog) photoDialog.close();
+      });
+      if (typeof photoDialog.showModal === "function") {
+        document.querySelectorAll("img[data-view-image]").forEach((image) => {
+          image.tabIndex = 0;
+          image.setAttribute("role", "button");
+          image.setAttribute("aria-label", `View full-size photo: ${image.alt}`);
+          const openPhoto = () => {
+            fullSizeImage.src = image.currentSrc || image.src;
+            fullSizeImage.alt = image.alt;
+            caption.textContent = image.alt;
+            downloadLink.href = image.src;
+            downloadLink.download = image.src.split("/").pop();
+            photoDialog.showModal();
+          };
+          image.addEventListener("click", openPhoto);
+          image.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              openPhoto();
+            }
+          });
+        });
+      }
+
+      const celebrateButton = document.querySelector("[data-celebrate]");
+      const celebrateStatus = document.querySelector("[data-celebrate-status]");
+      celebrateButton.addEventListener("click", () => {
+        celebrateStatus.textContent = "A little birthday cheer for you!";
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        celebrateButton.disabled = true;
+        const colors = ["coral", "berry", "teal", "gold", "sky"];
+        const confetti = Array.from({ length: 48 }, (_, index) => {
+          const piece = document.createElement("span");
+          piece.className = `confetti-piece confetti-${colors[index % colors.length]}`;
+          piece.style.left = `${Math.random() * 100}%`;
+          piece.style.setProperty("--confetti-drift", `${Math.round(Math.random() * 240 - 120)}px`);
+          piece.style.animationDelay = `${Math.random() * 350}ms`;
+          document.body.append(piece);
+          return piece;
+        });
+        window.setTimeout(() => {
+          confetti.forEach((piece) => piece.remove());
+          celebrateButton.disabled = false;
+        }, 2300);
+      });
+    })();
+  </script>
 </body>
 </html>

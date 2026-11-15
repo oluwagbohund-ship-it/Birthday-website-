@@ -1,6 +1,8 @@
 # Dave Timi Birthday Memories
 
-A static, five-page birthday appreciation and memory website for Mr. David's students. It uses only HTML5 and CSS3; there are no scripts, frameworks, external libraries, or build steps.
+A static, five-page birthday appreciation and memory website for Mr. David's students. It uses HTML5, CSS3 and a small amount of vanilla JavaScript embedded directly in the HTML pages for the mobile menu, photo viewer and confetti surprise. There are no separate JavaScript files, frameworks, external libraries, or build steps.
+
+On phones, the navigation collapses into an accessible menu. Tap a photo to open its full-size version and download it, or use the home-page celebration button for a brief confetti burst. The confetti respects the device's reduced-motion preference.
 
 ## Project structure
 

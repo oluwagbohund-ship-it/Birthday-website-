@@ -7,6 +7,7 @@
   <meta name="description" content="A personal message of gratitude and encouragement from Mr. David to his students.">
   <title>My Speech | Mr. David</title>
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
   <header class="site-header">
@@ -14,7 +15,10 @@
       <span class="brand-mark" aria-hidden="true">DT</span>
       <span class="brand-copy"><strong>DAVE TIMI</strong><small>BIRTHDAY MEMORIES</small></span>
     </a>
-    <nav class="navigation" aria-label="Main navigation">
+    <button class="menu-toggle" type="button" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation menu">
+      <span class="menu-icon" aria-hidden="true"></span><span>Menu</span>
+    </button>
+    <nav class="navigation" id="site-navigation" aria-label="Main navigation">
       <a href="index.html">Home</a>
       <a href="memories.html">Our Memories</a>
       <a href="speech.html" aria-current="page">My Speech</a>
@@ -58,5 +62,30 @@
     <p>Made with gratitude for the wonderful students of Rightec School.</p>
     <p class="creator-credit">Created by David Timileyin Oluwagbohun</p>
   </footer>
+  <script>
+    (() => {
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navigation = document.querySelector(".navigation");
+      const closeMenu = () => {
+        menuToggle.setAttribute("aria-expanded", "false");
+        navigation.classList.remove("is-open");
+      };
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+        menuToggle.setAttribute("aria-expanded", String(!isOpen));
+        navigation.classList.toggle("is-open", !isOpen);
+      });
+      navigation.addEventListener("click", (event) => {
+        if (event.target instanceof HTMLAnchorElement) closeMenu();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeMenu();
+      });
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 600) closeMenu();
+      });
+    })();
+  </script>
 </body>
 </html>
