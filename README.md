@@ -25,6 +25,8 @@ videos/
 
 All six available photographs are preserved in `images/` and displayed in the gallery. The original appreciation video is extracted to `videos/student-appreciation.mp4` and plays on `video.html` in the browser's native video player.
 
+The shared header and footer use a CSS-styled Dave Timi monogram and wordmark. Each photo shown on the home, memories, and video pages has a download link to its original image file.
+
 ## Preview locally
 
 Open `index.html` in a browser. The pages use relative links and assets, so they also work when served from a subdirectory on GitHub Pages.

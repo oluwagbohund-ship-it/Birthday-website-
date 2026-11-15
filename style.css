@@ -61,14 +61,73 @@ a:focus-visible {
 }
 
 .brand {
+  display: inline-flex;
   flex: 0 0 auto;
+  align-items: center;
+  gap: 11px;
   color: var(--white);
-  font: 700 11px/1.3 var(--sans);
-  letter-spacing: 2.2px;
 }
 
-.brand span {
+.brand-mark {
+  position: relative;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  place-items: center;
+  border: 1px solid var(--gold-deep);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #18304f, #09172b);
+  box-shadow: inset 0 0 0 3px var(--night), inset 0 0 0 4px var(--line);
   color: var(--gold);
+  font: 700 13px/1 var(--serif);
+  letter-spacing: -1px;
+}
+
+.brand-copy {
+  display: grid;
+  gap: 3px;
+}
+
+.brand-copy strong {
+  color: var(--white);
+  font: 700 12px/1.1 var(--sans);
+  letter-spacing: 2px;
+}
+
+.brand-copy small {
+  color: var(--gold);
+  font: 700 8px/1.2 var(--sans);
+  letter-spacing: 1.6px;
+}
+
+.download-link {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  background: rgb(231 196 123 / 6%);
+  color: var(--gold);
+  font: 700 9px/1.4 var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.download-link::before {
+  content: "↓";
+  font-size: 13px;
+  line-height: 1;
+}
+
+.download-link:hover {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--night);
 }
 
 .navigation {
@@ -252,12 +311,27 @@ h2 em {
 .hero-photo figcaption {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 12px;
   padding: 12px 4px 1px;
   color: #342714;
   font: 700 9px/1.5 var(--sans);
   letter-spacing: 1px;
   text-transform: uppercase;
+}
+
+.hero-photo .download-link {
+  flex: 0 0 auto;
+  margin: 0;
+  border-color: rgb(52 39 20 / 30%);
+  background: rgb(255 255 255 / 28%);
+  color: #342714;
+}
+
+.hero-photo .download-link:hover {
+  border-color: #342714;
+  background: #342714;
+  color: #fff4d6;
 }
 
 .hero-ornament {
@@ -356,6 +430,7 @@ h2 em {
 }
 
 .preview-card {
+  display: block;
   padding: 9px;
   border: 1px solid var(--line);
   background: var(--surface);
@@ -377,11 +452,15 @@ h2 em {
   object-fit: cover;
 }
 
-.preview-card span {
+.preview-card > span {
   display: block;
   padding: 13px 7px 5px;
   color: var(--white);
   font-size: 15px;
+}
+
+.preview-card .download-link {
+  margin: 7px 7px 4px;
 }
 
 .center {
@@ -471,7 +550,7 @@ h2 em {
   line-height: 1.25;
 }
 
-.memory-copy > p:last-child {
+.memory-copy > p:not(.memory-number) {
   margin-bottom: 0;
   color: var(--muted);
   font: 13px/1.85 var(--sans);
@@ -540,6 +619,9 @@ h2 em {
 }
 
 .video-frame {
+  width: 100%;
+  max-width: 390px;
+  justify-self: center;
   padding: clamp(10px, 1.8vw, 18px);
   border: 1px solid #f2dcaa;
   background: linear-gradient(135deg, #8d692b, #f8e5ad 19%, #a67c37 39%, #f6dda0 56%, #815d22 78%, #e9cd88);
@@ -555,8 +637,8 @@ h2 em {
 .video-frame-inner video {
   display: block;
   width: 100%;
-  max-height: 620px;
-  aspect-ratio: 16 / 9;
+  height: auto;
+  aspect-ratio: 9 / 16;
   background: #030914;
   object-fit: contain;
 }
@@ -569,6 +651,12 @@ h2 em {
   letter-spacing: 2px;
   text-align: center;
   text-transform: uppercase;
+}
+
+.frame-download {
+  display: flex;
+  width: max-content;
+  margin: 12px auto 4px;
 }
 
 .video-message h2 {
@@ -658,7 +746,7 @@ h2 em {
 }
 
 .site-footer .brand {
-  display: inline-block;
+  display: inline-flex;
   margin-bottom: 9px;
 }
 
@@ -710,7 +798,7 @@ h2 em {
 
   .video-frame {
     width: 100%;
-    max-width: 700px;
+    max-width: 390px;
     margin: 0 auto;
   }
 
