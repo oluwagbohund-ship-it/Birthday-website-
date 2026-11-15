@@ -576,9 +576,18 @@ h2 em {
   font-size: clamp(34px, 4vw, 47px);
 }
 
-.video-message code {
+.video-dedication {
+  margin: 25px 0 0;
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font: 700 10px/1.7 var(--sans);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.video-dedication strong {
   color: var(--gold);
-  overflow-wrap: anywhere;
 }
 
 .thank-you-hero {
