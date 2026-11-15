@@ -6,6 +6,10 @@
   --surface-raised: #12284a;
   --gold: #e7c47b;
   --gold-deep: #b9924b;
+  --coral: #ff7587;
+  --berry: #bd79ec;
+  --teal: #59dfcb;
+  --sky: #71aaff;
   --white: #f7f4ed;
   --muted: #c1c8d3;
   --line: rgb(231 196 123 / 24%);
@@ -24,7 +28,11 @@ html {
 body {
   min-width: 320px;
   margin: 0;
-  background: var(--night);
+  background:
+    radial-gradient(ellipse at 4% 18%, rgb(101 72 187 / 10%), transparent 27%),
+    radial-gradient(ellipse at 96% 48%, rgb(28 153 164 / 8%), transparent 25%),
+    radial-gradient(ellipse at 46% 88%, rgb(202 75 119 / 7%), transparent 32%),
+    var(--night);
   color: var(--white);
   font-family: var(--serif);
   line-height: 1.7;
@@ -55,8 +63,9 @@ a:focus-visible {
   justify-content: space-between;
   gap: 24px;
   padding: 14px max(6vw, calc((100vw - 1200px) / 2));
-  border-bottom: 1px solid rgb(231 196 123 / 12%);
+  border-bottom: 1px solid rgb(231 196 123 / 15%);
   background: rgb(7 19 39 / 96%);
+  box-shadow: 0 7px 28px rgb(0 0 0 / 16%), inset 0 -1px 0 rgb(189 121 236 / 9%);
   backdrop-filter: blur(14px);
 }
 
@@ -161,8 +170,14 @@ a:focus-visible {
   overflow: hidden;
   padding: 82px max(8vw, calc((100vw - 1120px) / 2)) 96px;
   background:
-    radial-gradient(ellipse at 12% 90%, rgb(183 143 71 / 10%), transparent 34%),
-    linear-gradient(120deg, #091a34, #071327 74%);
+    radial-gradient(ellipse at 12% 84%, rgb(255 117 135 / 18%), transparent 32%),
+    radial-gradient(ellipse at 76% 10%, rgb(189 121 236 / 18%), transparent 31%),
+    radial-gradient(ellipse at 99% 82%, rgb(89 223 203 / 13%), transparent 30%),
+    radial-gradient(circle at 18% 20%, rgb(255 255 255 / 62%) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 68% 32%, rgb(231 196 123 / 66%) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 43% 77%, rgb(113 170 255 / 58%) 0 1px, transparent 1.8px),
+    linear-gradient(120deg, #101b39, #071327 74%);
+  background-size: auto, auto, auto, 47px 53px, 71px 67px, 83px 79px, auto;
 }
 
 .hero::before {
@@ -346,6 +361,81 @@ h2 em {
   pointer-events: none;
 }
 
+.party-props {
+  position: absolute;
+  z-index: 0;
+  top: 24%;
+  right: max(6vw, calc((100vw - 1200px) / 2));
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  opacity: 0.88;
+  pointer-events: none;
+}
+
+.hero .party-props {
+  top: 8%;
+  right: 38%;
+  opacity: 0.62;
+}
+
+.balloon {
+  position: relative;
+  display: block;
+  width: 43px;
+  height: 57px;
+  border-radius: 50% 50% 46% 46%;
+  box-shadow: inset -7px -5px 12px rgb(7 19 39 / 20%), inset 6px 6px 10px rgb(255 255 255 / 30%), 0 8px 18px rgb(0 0 0 / 15%);
+  animation: balloon-drift 5s ease-in-out infinite;
+}
+
+.balloon::before {
+  position: absolute;
+  bottom: -5px;
+  left: 17px;
+  width: 0;
+  height: 0;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  border-top: 7px solid currentColor;
+  content: "";
+}
+
+.balloon::after {
+  position: absolute;
+  top: calc(100% + 3px);
+  left: 21px;
+  width: 1px;
+  height: 34px;
+  background: rgb(247 244 237 / 55%);
+  content: "";
+}
+
+.balloon-coral {
+  color: var(--coral);
+  background: radial-gradient(ellipse at 34% 26%, #ffb1b8, var(--coral) 55%, #c93c69);
+  transform: rotate(-10deg);
+}
+
+.balloon-teal {
+  margin-top: 25px;
+  color: var(--teal);
+  background: radial-gradient(ellipse at 34% 26%, #b1fff0, var(--teal) 55%, #178e9b);
+  animation-delay: -1.7s;
+}
+
+.balloon-violet {
+  color: var(--berry);
+  background: radial-gradient(ellipse at 34% 26%, #f0c4ff, var(--berry) 55%, #713fbe);
+  transform: rotate(9deg);
+  animation-delay: -3.1s;
+}
+
+@keyframes balloon-drift {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -9px; }
+}
+
 .section {
   padding: clamp(72px, 10vw, 132px) max(7vw, calc((100vw - 1120px) / 2));
 }
@@ -356,7 +446,10 @@ h2 em {
   align-items: start;
   gap: clamp(36px, 8vw, 110px);
   border-top: 1px solid rgb(255 255 255 / 5%);
-  background: var(--night-soft);
+  background:
+    radial-gradient(ellipse at 6% 3%, rgb(113 170 255 / 12%), transparent 40%),
+    radial-gradient(ellipse at 98% 90%, rgb(89 223 203 / 8%), transparent 38%),
+    var(--night-soft);
 }
 
 .section-heading h2,
@@ -405,7 +498,9 @@ h2 em {
 
 .memory-preview {
   background:
-    radial-gradient(ellipse at 50% 0, rgb(29 57 94 / 20%), transparent 60%),
+    radial-gradient(ellipse at 4% 10%, rgb(255 117 135 / 11%), transparent 34%),
+    radial-gradient(ellipse at 94% 30%, rgb(189 121 236 / 12%), transparent 36%),
+    radial-gradient(ellipse at 48% 100%, rgb(89 223 203 / 8%), transparent 45%),
     var(--night);
 }
 
@@ -432,8 +527,8 @@ h2 em {
 .preview-card {
   display: block;
   padding: 9px;
-  border: 1px solid var(--line);
-  background: var(--surface);
+  border: 1px solid rgb(189 121 236 / 27%);
+  background: linear-gradient(150deg, rgb(189 121 236 / 9%), transparent 42%), linear-gradient(25deg, rgb(89 223 203 / 6%), var(--surface) 58%);
   transition: border-color 180ms ease, transform 180ms ease;
 }
 
@@ -471,7 +566,10 @@ h2 em {
 .closing-band {
   padding: clamp(68px, 9vw, 110px) 7%;
   border-top: 1px solid var(--line);
-  background: linear-gradient(115deg, #102447, #0b1c37);
+  background:
+    radial-gradient(ellipse at 5% 90%, rgb(255 117 135 / 19%), transparent 38%),
+    radial-gradient(ellipse at 95% 10%, rgb(89 223 203 / 14%), transparent 36%),
+    linear-gradient(115deg, #262044, #102447 48%, #0b1c37);
   text-align: center;
 }
 
@@ -485,10 +583,22 @@ h2 em {
 }
 
 .page-hero {
+  position: relative;
+  overflow: hidden;
   padding: clamp(74px, 10vw, 125px) max(7vw, calc((100vw - 1120px) / 2));
   background:
-    radial-gradient(ellipse at 87% 3%, rgb(183 143 71 / 12%), transparent 36%),
-    linear-gradient(115deg, #0d2243, #071327 75%);
+    radial-gradient(ellipse at 86% 5%, rgb(189 121 236 / 21%), transparent 31%),
+    radial-gradient(ellipse at 4% 94%, rgb(255 117 135 / 14%), transparent 36%),
+    radial-gradient(ellipse at 72% 96%, rgb(89 223 203 / 11%), transparent 31%),
+    radial-gradient(circle at 88% 40%, rgb(255 255 255 / 60%) 0 1px, transparent 2px),
+    radial-gradient(circle at 76% 68%, rgb(231 196 123 / 66%) 0 1px, transparent 2px),
+    linear-gradient(115deg, #172043, #071327 75%);
+  background-size: auto, auto, auto, 58px 61px, 76px 83px, auto;
+}
+
+.page-hero > :not(.party-props) {
+  position: relative;
+  z-index: 1;
 }
 
 .page-hero h1 {
@@ -515,8 +625,8 @@ h2 em {
 
 .memory-card {
   overflow: hidden;
-  border: 1px solid rgb(231 196 123 / 16%);
-  background: var(--surface);
+  border: 1px solid rgb(113 170 255 / 21%);
+  background: linear-gradient(145deg, rgb(113 170 255 / 9%), transparent 38%), linear-gradient(25deg, rgb(255 117 135 / 6%), var(--surface) 65%);
   box-shadow: 0 16px 42px rgb(0 0 0 / 12%);
 }
 
@@ -679,6 +789,8 @@ h2 em {
 }
 
 .thank-you-hero {
+  position: relative;
+  overflow: hidden;
   display: flex;
   min-height: 68vh;
   flex-direction: column;
@@ -686,9 +798,19 @@ h2 em {
   justify-content: center;
   padding: 90px 7%;
   background:
-    radial-gradient(ellipse at 50% 20%, rgb(183 143 71 / 13%), transparent 42%),
-    linear-gradient(150deg, #102445, #071327 74%);
+    radial-gradient(ellipse at 8% 17%, rgb(255 117 135 / 19%), transparent 34%),
+    radial-gradient(ellipse at 90% 15%, rgb(189 121 236 / 20%), transparent 34%),
+    radial-gradient(ellipse at 52% 102%, rgb(89 223 203 / 13%), transparent 43%),
+    radial-gradient(circle at 18% 72%, rgb(255 255 255 / 65%) 0 1px, transparent 2px),
+    radial-gradient(circle at 81% 76%, rgb(231 196 123 / 72%) 0 1px, transparent 2px),
+    linear-gradient(150deg, #242044, #071327 74%);
+  background-size: auto, auto, auto, 62px 67px, 81px 79px, auto;
   text-align: center;
+}
+
+.thank-you-hero > :not(.party-props) {
+  position: relative;
+  z-index: 1;
 }
 
 .thank-you-hero h1 {
@@ -763,6 +885,12 @@ h2 em {
 }
 
 @media (max-width: 820px) {
+  .party-props {
+    right: 4vw;
+    transform: scale(0.82);
+    transform-origin: top right;
+  }
+
   .site-header {
     align-items: flex-start;
     flex-direction: column;
@@ -809,6 +937,18 @@ h2 em {
 }
 
 @media (max-width: 600px) {
+  .party-props {
+    top: 12px;
+    right: 3vw;
+    opacity: 0.45;
+    transform: scale(0.65);
+  }
+
+  .hero .party-props {
+    top: 44%;
+    right: 7%;
+  }
+
   .site-header {
     position: relative;
     padding: 14px 5vw;
@@ -922,5 +1062,7 @@ h2 em {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

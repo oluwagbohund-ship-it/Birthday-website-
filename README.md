@@ -1,6 +1,6 @@
-# Student Appreciation Website
+# Dave Timi Birthday Memories
 
-A static, five-page appreciation and memory website for Mr. David's students. It uses only HTML5 and CSS3; there are no scripts, frameworks, external libraries, or build steps.
+A static, five-page birthday appreciation and memory website for Mr. David's students. It uses only HTML5 and CSS3; there are no scripts, frameworks, external libraries, or build steps.
 
 ## Project structure
 
@@ -26,6 +26,8 @@ videos/
 All six available photographs are preserved in `images/` and displayed in the gallery. The original appreciation video is extracted to `videos/student-appreciation.mp4` and plays on `video.html` in the browser's native video player.
 
 The shared header and footer use a CSS-styled Dave Timi monogram and wordmark. Each photo shown on the home, memories, and video pages has a download link to its original image file.
+
+The birthday look is built with layered CSS color gradients, confetti-like light, and decorative balloon details; no image packs, scripts, or external design libraries are needed.
 
 ## Preview locally
 
